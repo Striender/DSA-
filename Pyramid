@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+int main()
+{
+    int n ; 
+    cin >> n ;
+    int p = 1 ;
+  
+    
+    for(int i=0 ; i<n ;i++){
+        
+        for(int space = n-i ; space >0 ; space--){
+            cout << " " ;
+        }
+        for(int j = 0 ; j < i+1 ; j++){
+            
+            cout << p ;
+            p++;
+           
+        }
+        
+        
+        if(i!=0){
+            for(int k = i ; k>0 ; k--){
+                cout<<k;
+            }
+            
+        }
+        
+        p=1;
+        cout<<endl;
+    }
+
+    return 0;
+}
+
