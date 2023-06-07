@@ -1,0 +1,25 @@
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a ; 
+    int b ;
+    
+    cin>>a>>b ;
+    
+    int max ;
+    max = (a>b)?a : b ;
+    
+    while(true){
+        if(max%a == 0&& max %b == 0){
+            cout<<max ;
+            break ;
+        }
+        max = max+1;
+    }
+    
+    return 0;
+}
