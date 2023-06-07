@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n ; 
+    cin>>n ;
+    
+    int i =1 ;
+    
+    while(i<=n){
+        int value = n-i +1 ;
+        int j = 1;
+        while(value){
+            cout<<j;
+            value--;
+            j++;
+        }
+        if(i>1)
+        {
+            
+        int star = 2*i-1 ;
+        
+        while(star){
+            cout<<"*";
+            star--;
+        }
+            }
+       
+        int k =  n-i+1;
+        int print = k;
+        while(k){
+            cout<<print;
+            print--;
+            k--;
+        }
+        
+        cout<<endl;
+        i++;
+        
+        
+        
+    }
+
+    return 0;
+}
