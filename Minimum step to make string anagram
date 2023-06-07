@@ -1,0 +1,48 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int countStep(string str1 ,string str2){
+    
+    int ch_count[26] = {0} ;
+    
+    int n = str1.length() ;
+    
+    for (int i=0 ; i<n ; i++ ){
+      ch_count[str1[i] - 'a']++ ;
+      ch_count[str2[i] - 'a']-- ;
+    }
+    
+    int res = 0 ; 
+    
+    for(int i=0 ; i<26 ; i++){
+      if(ch_count[i] != 0 ){
+        res += abs(ch_count[i]) ;
+      }
+    }
+    
+    return res / 2 ;
+}
+
+int main() 
+{
+    int t ;
+    cin >> t ;
+    
+    while(t--){
+       int n;
+       cin >> n ;
+       string s ; 
+       cin >> s ;
+       
+       string t ;
+       cin >> t ;
+       
+       cout << countStep(s ,t) ;
+    }
+}
+
+
+
+
+
