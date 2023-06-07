@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+void rangeOfPrime (int n ){
+     bool isPrime[n] ;
+    
+    fill(isPrime ,isPrime+n , true ); 
+    
+    isPrime[0] = false ;
+    isPrime[1] = false ;
+    
+    for(int i = 2 ; i*i <= n ; i++) {
+        
+        for(int j = i*2 ; j<=n ; j += i){
+            isPrime[j] = false;
+        }
+        
+    }
+    
+    cout<<"The Prime no. from the range 0 to "<<n<<" are :"<<endl;
+    for(int i = 0 ; i<n ; i++){
+        if(isPrime[i] == true ){
+            cout<<i << endl ;
+        }
+        
+    }
+    
+}
+
+int main()
+{
+    int n ;
+    cin>>n;
+    
+   rangeOfPrime(n);
+
+    return 0;
+}
