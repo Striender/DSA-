@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a , base = 1  , dec = 0 ;
+    
+    cin>>a ;
+    
+    int bin = a ;
+    
+    while(a!=0){
+        int rem = a%10 ;
+        dec = dec + rem*base ;
+        a=a/10;
+        base = base *2 ; 
+    }
+    
+    cout<<dec ;
+
+    return 0;
+}
