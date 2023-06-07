@@ -1,0 +1,32 @@
+
+#include <iostream>
+
+bool search (int arr[]  , int size , int k ){
+    if(size == 0){
+        return false ;
+    }
+    
+    if(arr[0] == k ){
+        return true ;
+    }else {
+        return search(arr + 1 , size -1  , k );
+    }
+}
+
+using namespace std;
+
+int main()
+{
+    int k ;
+    cin >> k ;
+    
+    int arr[] = {1,2,3,4,5,5,7,7,8};
+    
+    if(search(arr , 9 , k)){
+        cout << "Element is present ";
+    }else{
+        cout << "Element is not present " ;
+    }
+
+    return 0;
+}
