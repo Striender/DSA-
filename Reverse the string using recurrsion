@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+void reverseString(string& s , int i , int j ){
+    
+    // base case 
+    
+    if(i >  j){
+        return ;
+    }
+    
+    swap(s[i] , s[j]) ;
+    i ++ ; 
+    j -- ;
+    
+    reverseString(s , i , j);
+}
+
+int main()
+{
+    string s ;
+    cin >> s ;
+    
+    int j = s.length() - 1 ;
+    int i = 0 ; 
+    
+    
+    reverseString(s , i , j) ;
+    
+    cout << s ;
+
+    return 0;
+}
