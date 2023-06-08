@@ -1,0 +1,39 @@
+ /*
+ 
+4 4 4 4 4 4 4
+4 3 3 3 3 3 4
+4 3 2 2 2 3 4
+4 3 2 1 2 3 4
+4 3 2 2 2 3 4
+4 3 3 3 3 3 4
+4 4 4 4 4 4 4
+ 
+ 
+ */
+ 
+ 
+ #include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n ;
+    cin >> n ;
+    int rows = 2 * n - 1;
+    int cols = 2 * n - 1;
+    
+    for(int i=0; i<rows ; i++){
+        for(int j=0 ; j<cols ;j++){
+            int min_val = min(i,j);
+            min_val = min(min_val , rows - i -1);
+            min_val = min(min_val , cols - j -1);
+            
+            int val = n - min_val ;
+            cout << val << " ";
+        }cout<< endl ;
+    }
+    return 0;
+}
+
+
