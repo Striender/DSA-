@@ -1,0 +1,50 @@
+// Leetcode Problem 202 
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int solve(int n){
+        if( n == 7){
+            return 1 ;
+        }
+        if(n >= 1 && n <= 9){
+            return n;
+        }
+        int ans = 0 ;
+        int b = n ;
+        while(b!=0){
+            int rem = b%10 ;
+            ans += pow(rem , 2) ;
+            b /= 10 ;
+        }
+        return solve(ans);
+    }
+    
+bool isHappy(int num) {
+    
+        if(num == 1 || num == 7){
+            return true ;
+        }
+        int p = solve(num);
+        
+        if(p == 1){
+            return true ;
+        }else{
+            return false ; 
+        }
+    }
+
+int main()
+{
+    int n;
+    cin >> n ;
+    int b = n ;
+    if(isHappy(n)){
+        cout<< b <<" is the Happy Number !";
+    }else{
+        cout<< b <<" is not the Happy Number !";
+    }
+
+    return 0;
+}
