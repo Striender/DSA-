@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void solve(string& str , vector<string>& ans , string output , int index){
+    if(index >= str.size()){
+        if (output.size() > 0 ){
+            ans.push_back(output);
+        }
+        return ;
+    }
+    
+    // exclude 
+    solve(str , ans , output , index + 1 );
+    
+    // include 
+    char ch = str[index] ;
+    output += ch ;
+    solve(str , ans , output , index + 1);
+}
+
+vector<string> subsequenceOfstring(string str){
+    vector<string> ans ;
+    string output ;
+    int idx ;
+    solve(str , ans ,output ,  idx );
+    
+    return ans ;
+}
+
+int main()
+{
+    string str ;
+    cin >> str ;
+    
+    vector<string> st ; 
+    
+    st = subsequenceOfstring(str) ;
+    
+    for(auto it : st ){
+        cout << it << " " ;
+    }
+    
+    return 0;
+}
