@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void solve(vector<int> num , vector<vector<int>>& ans , int idx) {
+    // base case 
+    
+    if(idx == num.size()){
+        ans.push_back(num);
+        return ;
+    }
+    
+    for(int i=idx ; i<num.size() ; i++ ){
+        swap(num[i] , num[idx]);
+        solve(num , ans , idx + 1);
+        
+        // back track
+        swap(num[i] , num[idx]);
+    }
+}
+
+vector<vector<int>> permutation (vector<int>num){
+    vector<vector<int>> ans ;
+    int idx =  0;
+    
+    solve(num , ans , idx);
+    return ans ;
+}
+
+int main()
+{
+    vector<int> num = {1,2,3} ;
+    
+    vector<vector<int>> t ;
+    
+    t = permutation(num) ;
+    
+    for(auto it : t){
+        for(auto i : it){
+            cout << i << " " ;
+        }cout << endl ;
+    }
+
+    return 0;
+}
