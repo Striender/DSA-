@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+// brute force tc ---> Near about N3 
+void markRow(vector<vector<int>> &vec, int i, int m)
+{
+    for (int j = 0; j < m; j++)
+    {
+        if(vec[i][j] != 0)
+            vec[i][j] = -1;
+    }
+}
+void markCol(vector<vector<int>> &vec, int j, int n)
+{
+    for (int i = 0 ; i<n; i++)
+    {
+        if(vec[i][j] != 0)
+            vec[i][j] = -1;
+    }
+}
+
+vector<vector<int>> makeZero(vector<vector<int>> vec, int n, int m)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (vec[i][j] == 0)
+            {
+                markRow(vec, i, m);
+                markCol(vec, j, n);
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (vec[i][j] == -1)
+            {
+                vec[i][j] == 0;
+            }
+        }
+    }
+
+    return vec;
+}
+
+
+/* Better Solution
+
+tc ---> n2 
+sc --> O(n + m) 
+
+void setZeroes(vector<vector<int>>& m) {
+        int r = m.size();
+        int c = m[0].size();
+
+        vector<int> row(r , 0);
+        vector<int> col(c , 0);
+
+        for(int i=0 ; i<r ; i++){
+            for(int j=0 ; j<c ; j++){
+                if(m[i][j] == 0){
+                    row[i] = 1 ;
+                    col[j] = 1 ;
+                }
+            }
+        }
+
+        for(int i=0 ; i<r ; i++){
+            for(int j=0 ; j<c ;j++){
+                if(row[i] == 1 || col[j] == 1){
+                    m[i][j] = 0 ;
+                }
+            }
+        }
+
+*/
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> vec(n, vector<int>(m));
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cin >> vec[i][j];
+        }
+    }
+
+    vector<vector<int>> vec2(n, vector<int>(m));
+
+    vec2 = makeZero(vec, n, m);
+
+    for (auto it : vec2)
+    {
+        for (auto i : it)
+        {
+            if(i == -1){
+                cout <<"0" << " ";
+            }else{
+                cout << i << " ";
+            }
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
