@@ -1,0 +1,127 @@
+#include <iostream>
+
+using namespace std;
+
+class Node {
+    public:
+    int data ;
+    Node* next ;
+    
+    Node(int data){
+        this -> data = data ;
+        this -> next = NULL ;
+    }
+};
+
+void insertAtBegining(Node* &head , int data){
+    Node* temp = new Node(data) ;
+    temp -> next = head ;
+    head = temp ;
+}
+
+void insertAtEnd(Node* &tail , int data){
+    Node* temp = new Node(data) ;
+    tail -> next = temp ;
+    tail = temp ;
+}
+
+void insertAtMiddle(Node* &tail , Node* &head , int pos , int data){
+    Node* temp = head ;
+    Node* newNode = new Node(data) ;
+    
+    if(pos == 0 ){
+        insertAtBegining(head , data);
+        return ;
+    }
+    int c = 0 ;
+    
+    while(c < pos - 1){
+        temp = temp -> next ;
+        c ++ ;
+    }
+    
+    // inserting at the last element 
+    
+    if(temp -> next == NULL){
+        insertAtEnd(tail ,data) ;
+        return ;
+    }
+    
+    newNode -> next = temp -> next ;
+    temp -> next = newNode ;
+}
+
+void print(Node* &head){
+    Node* temp = head ;
+    while(temp != NULL){
+        cout << temp -> data <<" " ;
+        temp = temp ->next ;
+    }
+}
+
+int main()
+{
+    Node* n1 = new Node(10) ;
+    Node* head = n1 ;
+    Node* tail = n1 ;
+    
+    cout<< endl ;
+    print(head);
+    cout << "Insertion at the Begining "<<endl ;
+    
+    
+    insertAtBegining(head ,11);
+    insertAtBegining(head ,12);
+    insertAtBegining(head ,13);
+    insertAtBegining(head ,14);
+    insertAtBegining(head ,15);
+    
+     
+    print(head);
+    
+    cout<< endl ;
+    cout<< endl ;
+    
+    cout << "Insertion at the end "<<endl ;
+    
+    
+    insertAtEnd(tail , 17);
+    insertAtEnd(tail , 18);
+    insertAtEnd(tail , 19);
+    insertAtEnd(tail , 20);
+    insertAtEnd(tail , 21);
+    
+    print(head);
+    
+    cout<< endl ;
+    cout<< endl ;
+    
+    cout << "Insertion in the Middle  "<<endl ;
+
+    insertAtMiddle(tail , head , 3 , 2);
+    
+    print(head);
+    
+    cout<< endl ;
+    cout<< endl ;
+    
+    cout << "Insertion in the Middle but the index 0  "<<endl ;
+
+    insertAtMiddle(tail ,head , 0 , 1);
+    
+    print(head);
+    
+    cout<< endl ;
+    cout<< endl ;
+    
+    cout << "Insertion in the Middle but the index is out of the range  "<<endl ;
+
+    insertAtMiddle(tail ,head , 13 , 22);
+    
+    print(head);
+    
+    cout <<endl<<endl<<  "head  " << head -> data <<endl ;
+    cout << "tail  " << tail -> data <<endl ;
+  
+    return 0;
+}
