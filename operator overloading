@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+class N {
+    public :
+    int a ;
+    int b ;
+    
+    void operator+ (N& obj1){
+        int value = this->b ;
+        int val = obj1.b;
+        cout << val - value ;
+    }
+};
+
+int main()
+{
+    
+    N  ba  , ab ;
+    
+    ba.b = 7 ;
+    ab.b = 4 ;
+    
+   ab + ba ;
+    
+    return 0;
+}
