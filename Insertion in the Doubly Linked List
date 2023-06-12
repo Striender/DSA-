@@ -1,0 +1,142 @@
+#include <iostream>
+
+using namespace std;
+
+class Node {
+    public :
+    
+    int data ;
+    Node* next ;
+    Node* prev ;
+    
+    Node(int data){
+        this -> data = data ;
+        this -> next = NULL ;
+        this -> prev = NULL ;
+    }
+};
+
+void insertAtBegin(Node* &head ,Node* &tail,  int data){
+    
+    if(head == NULL ){
+        Node* temp = new Node(data);
+        head = temp ;
+        tail = temp ;
+    }else{
+        Node* newNode = new Node(data) ;
+        newNode -> next = head  ;
+        head -> prev = newNode ;
+        head = newNode ;
+    }
+}
+
+void insertAtEnd(Node* &tail  ,Node* &head, int data){
+    if(tail == NULL ){
+        Node* temp = new Node(data);
+        tail = temp ;
+        head = temp ;
+    }else{
+        Node* newNode = new Node(data) ;
+        tail -> next = newNode ;
+        newNode -> prev = tail ;
+        tail = newNode ;
+    }
+    
+    
+    
+}
+int getlength(Node* &head){
+    Node* temp = head ;
+    int c = 0 ;
+    while(temp != NULL ){
+        c++;
+        temp = temp -> next ; 
+    }
+    return c ;
+}
+
+void insertAtMiddle(Node* &head ,Node* &tail , int pos , int data){
+   Node* temp = head ;
+    Node* newNode = new Node(data) ;
+    
+    if(pos == 0 ){
+        insertAtBegin(head ,tail,  data);
+        return ;
+    }
+    int c = 0 ;
+    
+    while(c < pos - 1){
+        temp = temp -> next ;
+        c ++ ;
+    }
+    
+    // inserting at the last element 
+    
+    if(temp -> next == NULL){
+        insertAtEnd(tail,head ,data) ;
+        return ;
+    }
+    
+    newNode -> next = temp -> next ;
+    temp -> next -> prev = newNode ;
+    temp -> next = newNode ;
+    newNode -> prev = temp ;
+}
+
+void print(Node* &head){
+    Node* temp = head ;
+    
+    while(temp != NULL ){
+        cout << temp -> data <<" " ;
+        temp = temp -> next ; 
+    }cout<<endl ;
+}
+
+void print1(Node* &tail){
+    Node* temp = tail ;
+    
+    while(temp != NULL ){
+        cout << temp -> data <<" " ;
+        temp = temp -> prev ; 
+    }cout<<endl ;
+}
+
+
+
+int main()
+{
+    Node* newNode = new Node(10) ;
+    Node* head = newNode ;
+    Node* prev = newNode ;
+    Node* tail = newNode ;
+    print(head);
+ /* 
+    cout << newNode -> data << endl; 
+    cout << newNode -> next << endl; 
+    cout << newNode -> prev << endl; 
+    cout << head -> data << endl; 
+*/
+    cout << "Insertion at the Begining ! "<< endl ;
+    insertAtBegin(head , tail  , 9);
+    insertAtBegin(head ,tail  , 8);
+    insertAtBegin(head ,tail  , 7);
+    print(head);
+    cout << endl ;
+    
+    cout << "Insertion  at the End ! "<< endl  ;
+    insertAtEnd(tail ,head  , 11);
+    print(head);
+    cout << endl ;
+    
+    int len = getlength(head);
+    
+    
+    cout << "Insertion at the Middle !" << endl ;
+    insertAtMiddle(head , tail , 3 , 5);
+    print(head);
+ 
+    cout << "Reverse of the Linked List "<<endl ;
+    print1(tail);
+    cout << endl ;
+    return 0;
+}
