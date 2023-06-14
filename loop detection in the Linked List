@@ -1,0 +1,82 @@
+ 
+#include <iostream>
+#include <unordered_map>
+
+using namespace std;
+
+class Node {
+    public:
+    int data ;
+    Node* next ;
+    
+    Node(int data){
+        this -> data = data ;
+        this -> next = NULL ;
+    }
+};
+
+void insertAtEnd(Node* &tail , int data){
+    Node* temp = new Node(data) ;
+    tail -> next = temp ;
+    tail = temp ;
+}
+
+void print(Node* &head){
+    Node* temp = head ;
+    while(temp != NULL){
+        cout << temp -> data <<" " ;
+        temp = temp ->next ;
+    }
+}
+void last (Node* &tail , Node* &head , int da){
+    Node* newNode = new Node(da);
+    tail -> next = newNode ;
+    newNode -> next = head -> next ;
+    tail = newNode ;
+}
+
+
+bool detectLoop(Node* head)
+    {
+        if(head == NULL || head -> next == NULL){
+            return false ;
+        }
+        unordered_map<Node* , bool> mp ;
+        
+        Node* temp = head ;
+        
+        while(temp != NULL){
+            if(mp[temp] == true){
+                return true ;
+            }
+            
+            mp[temp] = true ;
+            temp = temp -> next ;
+        }
+        return false ;
+    }
+
+int main()
+{
+    Node* newNode = new Node(10);
+    Node* tail = newNode ;
+    Node* head = newNode ;
+    
+    insertAtEnd(tail , 11 );
+    insertAtEnd(tail , 12 );
+    insertAtEnd(tail , 13 );
+    insertAtEnd(tail , 14 );
+    insertAtEnd(tail , 15 );
+    
+    last(tail , head , 16 );
+    
+    if(detectLoop(head)){
+        cout << "Loop is present in the linked list ! " ;
+    }else{
+        cout << "Loop is not present in the list!" ;
+    }
+    
+    //print(head) ;
+
+    return 0;
+}
